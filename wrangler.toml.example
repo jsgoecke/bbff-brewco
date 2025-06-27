@@ -9,27 +9,29 @@ vars = { ENVIRONMENT = "development" }
 vars = { ENVIRONMENT = "production" }
 
 # R2 bucket binding for photo storage
+# Replace with your actual bucket names
 [[env.production.r2_buckets]]
 binding = "PHOTOS_BUCKET"
-bucket_name = "hmbbrew-25th-photos"
+bucket_name = "your-production-photos-bucket"
 
 [[env.development.r2_buckets]]
 binding = "PHOTOS_BUCKET"
-bucket_name = "hmbbrew-25th-photos-dev"
+bucket_name = "your-development-photos-bucket"
 
 # KV namespace for branding assets
+# Replace with your actual KV namespace IDs
 [[env.production.kv_namespaces]]
 binding = "BRANDING_ASSETS"
-id = "YOUR_PRODUCTION_KV_ID"
+id = "YOUR_PRODUCTION_KV_NAMESPACE_ID"
 
 [[env.development.kv_namespaces]]
 binding = "BRANDING_ASSETS"
-id = "YOUR_DEVELOPMENT_KV_ID"
+id = "YOUR_DEVELOPMENT_KV_NAMESPACE_ID"
 
-# Analytics binding for monitoring
+# Analytics binding for monitoring (production only)
 [[env.production.analytics_engine_datasets]]
 binding = "ANALYTICS"
-dataset = "bbff_photo_analytics"
+dataset = "your_photo_analytics_dataset"
 
 # Environment-specific settings
 [env.production.vars]

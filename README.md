@@ -55,6 +55,10 @@ This solution leverages Cloudflare's ecosystem for a completely serverless, glob
 git clone <repository-url>
 cd bbff-photo-site
 npm install
+
+# Copy and customize the configuration file
+cp wrangler.toml.example wrangler.toml
+# Edit wrangler.toml with your Cloudflare resource IDs (see step 3 below)
 ```
 
 ### 2. Cloudflare Services Setup
@@ -91,23 +95,57 @@ npm install
 
 ### 3. Environment Configuration
 
-Update `wrangler.toml` with your specific values:
+#### Create Your Configuration File
 
+The project includes a template configuration file that you need to copy and customize:
+
+```bash
+# Copy the example configuration
+cp wrangler.toml.example wrangler.toml
+```
+
+#### Required Configuration Updates
+
+Edit your new `wrangler.toml` file with your specific Cloudflare resources:
+
+**R2 Buckets:**
 ```toml
-name = "bbff-hmb-photo-site"
-compatibility_date = "2024-01-01"
-
-[env.production]
-vars = { ENVIRONMENT = "production" }
-
 [[env.production.r2_buckets]]
 binding = "PHOTOS_BUCKET"
-bucket_name = "hmbbrew-25th-photos"
+bucket_name = "your-production-photos-bucket"  # Replace with your R2 bucket name
 
+[[env.development.r2_buckets]]
+binding = "PHOTOS_BUCKET"
+bucket_name = "your-development-photos-bucket"  # Replace with your dev R2 bucket name
+```
+
+**KV Namespaces:**
+```toml
 [[env.production.kv_namespaces]]
 binding = "BRANDING_ASSETS"
-id = "YOUR_PRODUCTION_KV_ID"
+id = "YOUR_PRODUCTION_KV_NAMESPACE_ID"  # Replace with your production KV namespace ID
+
+[[env.development.kv_namespaces]]
+binding = "BRANDING_ASSETS"
+id = "YOUR_DEVELOPMENT_KV_NAMESPACE_ID"  # Replace with your development KV namespace ID
 ```
+
+**Analytics Engine (Production Only):**
+```toml
+[[env.production.analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "your_photo_analytics_dataset"  # Replace with your analytics dataset name
+```
+
+#### Finding Your Cloudflare Resource IDs
+
+- **R2 Bucket Names**: Found in Cloudflare Dashboard > R2 Object Storage
+- **KV Namespace IDs**: Found in Cloudflare Dashboard > Workers & Pages > KV > Your namespace > Settings
+- **Analytics Dataset**: Found in Cloudflare Dashboard > Analytics & Logs > Analytics Engine
+
+#### Security Note
+
+⚠️ **Important**: Your `wrangler.toml` file contains sensitive configuration and is excluded from Git. Never commit it to version control. Only the `wrangler.toml.example` file should be tracked.
 
 ### 4. Local Development
 
@@ -166,7 +204,8 @@ bbff-photo-site/
 │   ├── types/index.ts           # TypeScript definitions
 │   └── utils/                   # Utility functions
 ├── package.json                 # Dependencies and scripts
-├── wrangler.toml               # Cloudflare configuration
+├── wrangler.toml.example       # Cloudflare configuration template
+├── wrangler.toml               # Your local Cloudflare config (not tracked)
 ├── tsconfig.json               # TypeScript configuration
 └── README.md                   # This file
 ```

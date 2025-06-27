@@ -33,7 +33,9 @@ out/
 # Cloudflare Workers/Pages Specific
 # =============================================================================
 .wrangler/
+wrangler.toml
 wrangler.toml.local
+!wrangler.toml.example
 .dev.vars
 .env.local
 .env.production
