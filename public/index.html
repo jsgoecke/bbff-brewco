@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Half Moon Bay Brewing Co. 25th Anniversary - Photo Gallery | Beach Break Film Festival</title>
+    <meta name="description" content="Browse and download photos from the Half Moon Bay Brewing Company's 25th Anniversary celebration, presented by Beach Break Film Festival.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    
+    <!-- Preconnect to optimize loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fancybox CSS for lightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="HMB Brewing Co. 25th Anniversary - Photo Gallery">
+    <meta property="og:description" content="Browse and download photos from the celebration">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/og-image.jpg">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HMB Brewing Co. 25th Anniversary - Photo Gallery">
+    <meta name="twitter:description" content="Browse and download photos from the celebration">
+    <meta name="twitter:image" content="/assets/og-image.jpg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logos">
+                    <img src="/assets/logos/bbff-logo.png" alt="Beach Break Film Festival" class="logo bbff-logo">
+                    <span class="logo-separator">×</span>
+                    <img src="/assets/logos/hmb-logo.png" alt="Half Moon Bay Brewing Co." class="logo hmb-logo">
+                </div>
+                <div class="header-text">
+                    <h1 class="main-title">Half Moon Bay Brewing Co.</h1>
+                    <p class="subtitle">25th Anniversary Celebration</p>
+                    <p class="event-info">Photo Gallery | <span id="photo-count">Loading...</span> Photos</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Gallery Controls -->
+            <div class="gallery-controls">
+                <div class="controls-left">
+                    <button id="refresh-btn" class="btn btn-secondary" aria-label="Refresh gallery">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="m3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        Refresh
+                    </button>
+                    <div class="sort-controls">
+                        <label for="sort-select" class="sr-only">Sort photos by</label>
+                        <select id="sort-select" class="sort-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name">By Name</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="controls-right">
+                    <div class="view-toggle" role="radiogroup" aria-label="Gallery view">
+                        <button id="grid-view" class="view-btn active" data-view="grid" aria-pressed="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            Grid
+                        </button>
+                        <button id="list-view" class="view-btn" data-view="list" aria-pressed="false">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                            List
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="loading" aria-live="polite">
+                <div class="loading-spinner"></div>
+                <p>Loading photos...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="error-message" style="display: none;" role="alert">
+                <div class="error-content">
+                    <h3>Unable to load photos</h3>
+                    <p id="error-text">Please try refreshing the page.</p>
+                    <button id="retry-btn" class="btn btn-primary">Try Again</button>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty" class="empty-state" style="display: none;">
+                <div class="empty-content">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="9" cy="9" r="2"></circle>
+                        <polyline points="21,15 16,10 5,21"></polyline>
+                    </svg>
+                    <h3>No photos yet</h3>
+                    <p>Photos will appear here as they're uploaded during the event.</p>
+                </div>
+            </div>
+
+            <!-- Photo Gallery -->
+            <div id="photo-gallery" class="photo-gallery" style="display: none;">
+                <!-- Photos will be inserted here dynamically -->
+            </div>
+
+            <!-- Load More Button -->
+            <div id="load-more-container" class="load-more-container" style="display: none;">
+                <button id="load-more-btn" class="btn btn-secondary">
+                    <span class="btn-text">Load More Photos</span>
+                    <div class="btn-spinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Beach Break Film Festival</h4>
+                    <p>Celebrating independent cinema and community</p>
+                    <a href="https://bbffhmb.org" target="_blank" rel="noopener">Visit BBFF Website</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Half Moon Bay Brewing Co.</h4>
+                    <p>Crafting exceptional beer for 25 years</p>
+                    <a href="#" target="_blank" rel="noopener">Visit Brewery Website</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Photo Gallery</h4>
+                    <p>All photos are watermarked and © their respective photographers</p>
+                    <p class="last-updated">Last updated: <span id="last-updated">Loading...</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Beach Break Film Festival & Half Moon Bay Brewing Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="/scripts/gallery.js"></script>
+    
+    <!-- Analytics (if needed) -->
+    <script>
+        // Basic analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Photo Gallery',
+                page_location: window.location.href,
+                event_category: 'engagement'
+            });
+        }
+    </script>
+</body>
+</html>

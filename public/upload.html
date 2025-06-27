@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload - HMB Brewing Co. 25th Anniversary | BBFF</title>
+    <meta name="description" content="Upload photos from the Half Moon Bay Brewing Company's 25th Anniversary celebration.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    
+    <style>
+        /* Upload-specific styles */
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .upload-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .upload-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .upload-content {
+            padding: 2rem;
+        }
+        
+        .drop-zone {
+            border: 3px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #f7fafc;
+        }
+        
+        .drop-zone.dragover {
+            border-color: #3182ce;
+            background: #ebf8ff;
+        }
+        
+        .drop-zone-icon {
+            font-size: 3rem;
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+        
+        .drop-zone-text {
+            font-size: 1.125rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+        
+        .drop-zone-subtext {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-progress {
+            margin-top: 2rem;
+        }
+        
+        .progress-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-item.success {
+            background: #f0fff4;
+            border-color: #9ae6b4;
+        }
+        
+        .progress-item.error {
+            background: #fed7d7;
+            border-color: #feb2b2;
+        }
+        
+        .progress-info {
+            flex: 1;
+        }
+        
+        .progress-filename {
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .progress-status {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+        
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #3182ce;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-icon {
+            color: #48bb78;
+        }
+        
+        .progress-icon.error {
+            color: #e53e3e;
+        }
+        
+        .upload-summary {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .instructions {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instructions h3 {
+            color: #2c5282;
+            margin-top: 0;
+        }
+        
+        .instructions ul {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.25rem;
+            color: #2d3748;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logos">
+                    <img src="/assets/logos/bbff-logo.png" alt="Beach Break Film Festival" class="logo bbff-logo">
+                    <span class="logo-separator">×</span>
+                    <img src="/assets/logos/hmb-logo.png" alt="Half Moon Bay Brewing Co." class="logo hmb-logo">
+                </div>
+                <div class="header-text">
+                    <h1 class="main-title">Photo Upload</h1>
+                    <p class="subtitle">Half Moon Bay Brewing Co. 25th Anniversary</p>
+                    <p class="event-info">Secure photographer portal</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="upload-container">
+            <div class="upload-card">
+                <div class="upload-header">
+                    <h2>Upload Event Photos</h2>
+                    <p>Upload your photos from the celebration. All images will be automatically watermarked with event branding.</p>
+                </div>
+                
+                <div class="upload-content">
+                    <!-- Instructions -->
+                    <div class="instructions">
+                        <h3>📸 Upload Guidelines</h3>
+                        <ul>
+                            <li>Supported formats: JPEG, PNG, WebP</li>
+                            <li>Maximum file size: 10MB per image</li>
+                            <li>Maximum 10 files per upload batch</li>
+                            <li>Images will be automatically watermarked</li>
+                            <li>Photos appear in the gallery immediately after upload</li>
+                        </ul>
+                    </div>
+
+                    <!-- Upload Form -->
+                    <form id="upload-form">
+                        <div class="drop-zone" id="drop-zone">
+                            <div class="drop-zone-icon">📁</div>
+                            <div class="drop-zone-text">Drag and drop photos here</div>
+                            <div class="drop-zone-subtext">or click to browse files</div>
+                            <input type="file" 
+                                   id="file-input" 
+                                   class="file-input" 
+                                   multiple 
+                                   accept="image/jpeg,image/png,image/webp">
+                        </div>
+                        
+                        <!-- Upload Progress -->
+                        <div id="upload-progress" class="upload-progress" style="display: none;">
+                            <h3>Upload Progress</h3>
+                            <div id="progress-list"></div>
+                        </div>
+                        
+                        <!-- Upload Summary -->
+                        <div id="upload-summary" class="upload-summary" style="display: none;">
+                            <h3>Upload Complete</h3>
+                            <p id="summary-text"></p>
+                            <div style="margin-top: 1rem;">
+                                <button type="button" id="view-gallery-btn" class="btn btn-primary">
+                                    View Gallery
+                                </button>
+                                <button type="button" id="upload-more-btn" class="btn btn-secondary">
+                                    Upload More Photos
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                    Back to Gallery
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Photographer Portal</h4>
+                    <p>Secure upload interface for event photography team</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>Need help? Contact the technical team for assistance</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Privacy</h4>
+                    <p>All uploads are secure and only accessible to authorized personnel</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Beach Break Film Festival & Half Moon Bay Brewing Co.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Upload Script -->
+    <script src="/scripts/upload.js"></script>
+</body>
+</html>

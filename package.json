@@ -1,0 +1,58 @@
+{
+  "name": "bbff-hmb-photo-site",
+  "version": "1.0.0",
+  "description": "Photo sharing site for BBFF & HMB Brewing Co. 25th Anniversary",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "build": "tsc && npm run build:frontend",
+    "build:frontend": "npm run copy-assets",
+    "copy-assets": "cp -r public/* dist/",
+    "deploy": "wrangler pages deploy dist",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:watch": "vitest --watch",
+    "test:e2e": "playwright test",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "photo-sharing",
+    "cloudflare",
+    "serverless",
+    "event"
+  ],
+  "author": "BBFF & HMB Brewing Co.",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231121.0",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.6.1",
+    "wrangler": "^3.19.0"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.28"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{html,css,md}": [
+      "prettier --write"
+    ]
+  }
+}

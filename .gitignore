@@ -1,0 +1,390 @@
+# =============================================================================
+# BBFF & HMB Brewing Co. Photo Sharing Site - Git Ignore Configuration
+# =============================================================================
+
+# Node.js Dependencies
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package Manager Lock Files (choose one strategy)
+# =============================================================================
+# Uncomment the line below if you want to ignore lock files (not recommended)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Build Outputs
+# =============================================================================
+dist/
+build/
+out/
+.output/
+.nuxt/
+.next/
+.vitepress/dist/
+.cache/
+.parcel-cache/
+
+# Cloudflare Workers/Pages Specific
+# =============================================================================
+.wrangler/
+wrangler.toml.local
+.dev.vars
+.env.local
+.env.production
+.env.staging
+.env.development
+worker/
+functions/.wrangler/
+
+# Environment Variables & Secrets
+# =============================================================================
+.env
+.env.*
+!.env.example
+.envrc
+secrets.json
+config.local.json
+local.json
+
+# Cloudflare API Keys & Tokens
+# =============================================================================
+cloudflare.json
+cf-credentials.json
+.cloudflare/
+*.pem
+*.key
+*.crt
+*.p12
+
+# IDE & Editor Files
+# =============================================================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json.example
+!.vscode/extensions.json
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+tags
+
+# Emacs
+\#*\#
+.\#*
+
+# Atom
+.atom/
+
+# Test Coverage & Reports
+# =============================================================================
+coverage/
+.nyc_output/
+.coverage/
+*.lcov
+test-results/
+playwright-report/
+test-results.xml
+junit.xml
+
+# Logs
+# =============================================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm/
+.eslintcache
+
+# Runtime & Process Files
+# =============================================================================
+pids/
+*.pid
+*.seed
+*.pid.lock
+.grunt/
+lib-cov/
+
+# Dependency Directories
+# =============================================================================
+jspm_packages/
+bower_components/
+web_modules/
+
+# TypeScript
+# =============================================================================
+*.tsbuildinfo
+.tscache/
+
+# Optional npm cache directory
+# =============================================================================
+.npm/
+
+# Optional eslint cache
+# =============================================================================
+.eslintcache
+
+# Microbundle cache
+# =============================================================================
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+# =============================================================================
+.node_repl_history
+
+# Output of 'npm pack'
+# =============================================================================
+*.tgz
+
+# Yarn Integrity file
+# =============================================================================
+.yarn-integrity
+
+# Temporary Directories
+# =============================================================================
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Operating System Files
+# =============================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Browser Downloads
+# =============================================================================
+*.crdownload
+*.partial
+
+# Image Processing & Media Files (if storing locally for testing)
+# =============================================================================
+# Uncomment if you have local test images that shouldn't be committed
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+# *.webp
+# *.bmp
+# *.tiff
+# *.svg
+# uploads/
+# media/
+# assets/uploads/
+
+# Cloudflare R2 Local Cache (if implemented)
+# =============================================================================
+.r2-cache/
+local-storage/
+storage-cache/
+
+# Analytics & Monitoring Data
+# =============================================================================
+analytics/
+monitoring/
+metrics/
+*.analytics
+.datadog/
+
+# Backup Files
+# =============================================================================
+*.backup
+*.bak
+*.orig
+*.rej
+*~
+
+# Archive Files
+# =============================================================================
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+
+# Documentation Build
+# =============================================================================
+docs/_build/
+docs/.doctrees/
+.sphinx/
+
+# Storybook
+# =============================================================================
+storybook-static/
+
+# Playwright
+# =============================================================================
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# MacOS Specific
+# =============================================================================
+.fseventsd/
+.DocumentRevisions-V100/
+.TemporaryItems/
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# JetBrains IDEs
+# =============================================================================
+.idea/
+*.iml
+out/
+gen/
+.gradle/
+build/
+
+# Personal Notes & Planning
+# =============================================================================
+TODO.md
+NOTES.md
+PLANNING.md
+ROADMAP.md
+.notes/
+personal/
+
+# Local Development Overrides
+# =============================================================================
+*.local.*
+local.*
+override.*
+.override/
+
+# Linting & Formatting
+# =============================================================================
+.eslintcache
+.stylelintcache
+.prettier-cache
+
+# Cloudflare Assets Upload (if caching branding assets locally)
+# =============================================================================
+branding-assets/
+logos/
+watermarks/
+
+# Git Hooks (if using local git hooks)
+# =============================================================================
+.git/hooks/
+.githooks/
+
+# Security Scanning Results
+# =============================================================================
+.snyk
+security-scan-results/
+vulnerability-reports/
+
+# Performance Testing
+# =============================================================================
+lighthouse-reports/
+performance-results/
+load-test-results/
+
+# Sentry Error Tracking (if used)
+# =============================================================================
+.sentryclirc
+sentry.properties
+
+# Database (if using local development database)
+# =============================================================================
+*.db
+*.sqlite
+*.sqlite3
+data/
+db/
+
+# Terraform (if using infrastructure as code)
+# =============================================================================
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+terraform.tfvars.json
+
+# Docker (if using containerization)
+# =============================================================================
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# SSH Keys
+# =============================================================================
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+
+# SSL Certificates
+# =============================================================================
+*.crt
+*.pem
+*.key
+*.p12
+*.pfx
+ssl/
+certs/
+
+# =============================================================================
+# END OF .GITIGNORE
+# =============================================================================
+
+# Note: This .gitignore is comprehensive for a Cloudflare Workers/Pages project
+# with Node.js/TypeScript. Remove sections that don't apply to your workflow.
+# 
+# Always verify that sensitive files like API keys, tokens, and credentials
+# are properly excluded before committing to a public repository.
